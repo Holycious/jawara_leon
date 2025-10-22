@@ -1,42 +1,25 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jawara/pages/pengeluaran/pengeluaran_page.dart';
+import 'package:jawara/pages/mutasi_keluarga/mutasi_keluarga_page.dart';
+import 'package:jawara/pages/channel_transfer/channel_transfer_page.dart';
 
-import '../pages/home_page.dart';
-import '../pages/activity_log_page.dart';
-import '../pages/user_list_page.dart';
-
-class AppRoutes {
-  static const home = '/';
-  static const activityLog = '/activity-log';
-  static const userList = '/user-list';
-}
-
-final GlobalKey<NavigatorState> _rootKey = GlobalKey<NavigatorState>(
-  debugLabel: 'root',
-);
-
-final GoRouter appRouter = GoRouter(
-  navigatorKey: _rootKey,
-  initialLocation: AppRoutes.home,
+final appRouter = GoRouter(
   routes: [
     GoRoute(
-      path: AppRoutes.home,
-      name: 'home',
-      builder: (context, state) => const HomePage(),
+      path: '/',
+      builder: (context, state) => const PengeluaranPage(), // ganti dengan home yang benar
     ),
     GoRoute(
-      path: AppRoutes.activityLog,
-      name: 'activity-log',
-      builder: (context, state) => const ActivityLogPage(),
+      path: '/pengeluaran',
+      builder: (context, state) => const PengeluaranPage(),
     ),
     GoRoute(
-      path: AppRoutes.userList,
-      name: 'user-list',
-      builder: (context, state) => const UserListPage(),
+      path: '/mutasi-keluarga',
+      builder: (context, state) => const MutasiKeluargaPage(),
+    ),
+    GoRoute(
+      path: '/channel-transfer',
+      builder: (context, state) => const ChannelTransferPage(),
     ),
   ],
-  errorBuilder: (context, state) => Scaffold(
-    appBar: AppBar(title: const Text('Not found')),
-    body: const Center(child: Text('404 - Page not found')),
-  ),
 );
